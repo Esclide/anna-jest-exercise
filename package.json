@@ -1,7 +1,4 @@
 {
-  "workspaces": [
-    "packages/*"
-  ],
   "scripts": {
     "build": "lerna run build",
     "test": "jest --runInBand --detectOpenHandles"
