@@ -1,0 +1,28 @@
+{
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "lerna run build",
+    "test": "jest --runInBand --detectOpenHandles"
+  },
+  "devDependencies": {
+    "@types/chai": "4.2.3",
+    "@types/chai-http": "4.2.0",
+    "@types/puppeteer": "3.0.0",
+    "@types/request": "2.48.3",
+    "@types/request-promise": "4.1.44",
+    "jest": "^26.0.1",
+    "ts-jest": "^26.4.4",
+    "typescript": "^3.8.3",
+    "typedi": "0.8.0"
+  },
+  "dependencies": {
+    "@types/jest": "^26.0.15",
+    "chai": "4.2.0",
+    "chai-http": "4.3.0",
+    "puppeteer": "4.0.0",
+    "request": "2.88.0",
+    "request-promise": "4.2.2"
+  }
+}
