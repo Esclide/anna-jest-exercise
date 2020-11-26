@@ -1,7 +1,6 @@
 import { BrowserContext, Response } from 'puppeteer';
 import { BasePagePo } from './base-page.po'
 import { TextElement } from '../elements/text-element'
-import { Service } from 'typedi';
 import { Button } from '../elements/button'
 
 interface PageElements {
@@ -14,7 +13,6 @@ interface PageElements {
   }
 }
 
-@Service()
 export class LessonPage extends BasePagePo {
   public elements!: PageElements;
   public backgroundColor = 'var(--white-500)';

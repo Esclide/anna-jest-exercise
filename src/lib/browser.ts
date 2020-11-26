@@ -33,7 +33,6 @@ export class GlobalBrowser {
     };
 
     const browser = await puppeteer.launch(param_puppeteer);
-    console.log(browser)
     return await browser.createIncognitoBrowserContext();
   }
 }

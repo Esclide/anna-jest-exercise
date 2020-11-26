@@ -15,7 +15,6 @@
     "jest": "^26.0.1",
     "ts-jest": "^26.4.4",
     "typescript": "^3.8.3",
-    "typedi": "0.8.0"
   },
   "dependencies": {
     "@types/jest": "^26.0.15",

@@ -1,11 +1,9 @@
 import { BrowserContext, Page } from 'puppeteer'
 import { GlobalBrowser } from '../../browser'
-import { Service } from 'typedi';
 
 const defaultTimeout = 20000;
 const baseUrl = 'https://some-page.com/'
 
-@Service()
 export class BasePagePo {
   public page!: Page;
   public context!: BrowserContext;

@@ -1,8 +1,6 @@
 import { BrowserContext, Response } from 'puppeteer';
 import { BasePagePo } from './base-page.po'
 import { TextElement } from '../elements/text-element'
-import { Service } from 'typedi';
-import { assert } from "chai"
 
 interface PageElements {
   header: TextElement;
@@ -10,7 +8,6 @@ interface PageElements {
   lessonsList: TextElement;
 }
 
-@Service()
 export class HomePage extends BasePagePo {
   public elements!: PageElements;
 

@@ -2,13 +2,11 @@ import chai = require("chai");
 import chaiHttp = require("chai-http");
 
 import { ParsedUrlQueryInput } from "querystring"
-import { Service } from 'typedi'
 
 chai.use(chaiHttp);
 
 const BASE_URL: string = 'http://www.boredapi.com/api/';
 
-@Service()
 export class Request {
 
   public async getMethod<T>(path: string, query?: ParsedUrlQueryInput): Promise<Response> {

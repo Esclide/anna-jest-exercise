@@ -1,8 +1,6 @@
-import { Service } from 'typedi';
 import { Request } from './request';
 
 
-@Service()
 export class BoredAPI extends Request {
 
   /**
