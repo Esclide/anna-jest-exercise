@@ -1,14 +1,12 @@
-import { Request } from './request';
-
+import { Request } from "./request";
 
 export class BoredAPI extends Request {
-
   /**
    * Get random activity
    * @returns {Promise<Response>}
    */
   public async getRandomActivity(): Promise<Response> {
-    return await this.getMethod('activity/');
+    return await this.getMethod("activity/");
   }
 
   /**

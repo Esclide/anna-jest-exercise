@@ -1,11 +1,8 @@
-import { Service } from 'typedi';
-import { Activity } from '../entity/activity'
-import { Bored } from '../../main'
-import {expect} from 'chai';
+import { Activity } from "../entity/activity";
+import { Bored } from "../../main";
+import { expect } from "chai";
 
-@Service()
 export class BoredAPIHelper {
-
   /**
    * Get random activity
    * @returns {Promise<Activity>}
@@ -13,7 +10,7 @@ export class BoredAPIHelper {
   public async getRandomActivity(): Promise<Activity> {
     const response = await Bored.getRandomActivity();
     expect(response.ok).true;
-    return  response.body as Activity;
+    return response.body as Activity;
   }
 
   /**
@@ -24,7 +21,7 @@ export class BoredAPIHelper {
   public async getActivityByKey(key: string): Promise<Activity> {
     const response = await Bored.getActivityByKey(key);
     expect(response.ok).true;
-    return  response.body as Activity;
+    return response.body as Activity;
   }
 
   /**
@@ -35,6 +32,6 @@ export class BoredAPIHelper {
   public async getRandomActivityByType(type: string): Promise<Activity> {
     const response = await Bored.getRandomActivityByType(type);
     expect(response.ok).true;
-    return  response.body as Activity;
+    return response.body as Activity;
   }
 }

@@ -1,7 +1,7 @@
-import { BrowserContext, Response } from 'puppeteer';
-import { BasePagePo } from './base-page.po'
-import { TextElement } from '../elements/text-element'
-import { Button } from '../elements/button'
+import { BrowserContext, Response } from "puppeteer";
+import { BasePagePo } from "./base-page.po";
+import { TextElement } from "../elements/text-element";
+import { Button } from "../elements/button";
 
 interface PageElements {
   testTitle: TextElement;
@@ -10,15 +10,15 @@ interface PageElements {
     questionText: TextElement;
     continueButton: Button;
     answerButtonDefaultSelector: string;
-  }
+  };
 }
 
 export class LessonPage extends BasePagePo {
   public elements!: PageElements;
-  public backgroundColor = 'var(--white-500)';
+  public backgroundColor = "var(--white-500)";
 
   constructor() {
-    super('/lessons/:lessonName/');
+    super("/lessons/:lessonName/");
   }
 
   /**
@@ -28,13 +28,13 @@ export class LessonPage extends BasePagePo {
     await super.init(context);
 
     this.elements = {
-      testTitle: new TextElement('selector', this.page),
+      testTitle: new TextElement("selector", this.page),
       questionField: {
-        questionNumber: new TextElement('selector', this.page),
-        questionText: new TextElement('selector', this.page),
-        continueButton: new Button('selector button', this.page),
-        answerButtonDefaultSelector: 'selector'
-      }
+        questionNumber: new TextElement("selector", this.page),
+        questionText: new TextElement("selector", this.page),
+        continueButton: new Button("selector button", this.page),
+        answerButtonDefaultSelector: "selector",
+      },
     };
   }
 
@@ -43,7 +43,12 @@ export class LessonPage extends BasePagePo {
    * @return {Promise<number>}
    */
   public async getQuestionNumber(): Promise<number> {
-    return parseInt((await this.elements.questionField.questionNumber.getText()).split(' ')[1], 10);
+    return parseInt(
+      (await this.elements.questionField.questionNumber.getText()).split(
+        " "
+      )[1],
+      10
+    );
   }
 
   /**
@@ -81,7 +86,7 @@ export class LessonPage extends BasePagePo {
    */
   public async getAnswersCount(): Promise<number> {
     return this.page.evaluate((selector) => {
-      return (Array.from(document.querySelectorAll(`${selector} tr`))).length;
+      return Array.from(document.querySelectorAll(`${selector} tr`)).length;
     }, this.elements.questionField.answerButtonDefaultSelector);
   }
 
@@ -95,6 +100,6 @@ export class LessonPage extends BasePagePo {
       (selector) => document.querySelector(selector).color,
       `${this.elements.questionField.answerButtonDefaultSelector} div:nth-child(${index}) div`
     );
-    return (elementColor !== this.backgroundColor);
+    return elementColor !== this.backgroundColor;
   }
 }

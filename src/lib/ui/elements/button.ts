@@ -1,5 +1,5 @@
-import { Page } from 'puppeteer';
-import { BaseElement } from './base-element'
+import { Page } from "puppeteer";
+import { BaseElement } from "./base-element";
 
 export class Button extends BaseElement {
   constructor(selector: string, page: Page) {
@@ -20,8 +20,7 @@ export class Button extends BaseElement {
       if (el === null) {
         throw new Error(`Element with selector "${selector}" not found`);
       }
-      return !el.textContent ? '' : el.textContent;
+      return !el.textContent ? "" : el.textContent;
     }, this.selector);
   }
-
 }

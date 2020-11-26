@@ -6,6 +6,7 @@
     "interface-name": false,
     "object-literal-sort-keys": false,
     "no-any": true,
-    "no-unused-expression": false
+    "no-unused-expression": false,
+    "quotemark": [true, "double"]
   }
 }

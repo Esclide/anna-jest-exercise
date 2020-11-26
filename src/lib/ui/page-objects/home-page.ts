@@ -1,6 +1,6 @@
-import { BrowserContext, Response } from 'puppeteer';
-import { BasePagePo } from './base-page.po'
-import { TextElement } from '../elements/text-element'
+import { BrowserContext, Response } from "puppeteer";
+import { BasePagePo } from "./base-page.po";
+import { TextElement } from "../elements/text-element";
 
 interface PageElements {
   header: TextElement;
@@ -12,7 +12,7 @@ export class HomePage extends BasePagePo {
   public elements!: PageElements;
 
   constructor() {
-    super('/');
+    super("/");
   }
 
   /**
@@ -22,10 +22,10 @@ export class HomePage extends BasePagePo {
     await super.init(context);
 
     this.elements = {
-      header: new TextElement('selector', this.page),
+      header: new TextElement("selector", this.page),
 
       // Here should be selector of lessons table from the page (I can't get it from photo)
-      lessonsList: new TextElement('#root lessons table selector', this.page),
+      lessonsList: new TextElement("#root lessons table selector", this.page),
     };
   }
 
@@ -59,6 +59,8 @@ export class HomePage extends BasePagePo {
    * @return {Promise<boolean>}
    */
   public async ifTestPassed(index: number): Promise<boolean> {
-    return !(await this.page.$(`${this.elements.lessonsList.selector} div:nth-child(${index}) div svg`))
+    return !(await this.page.$(
+      `${this.elements.lessonsList.selector} div:nth-child(${index}) div svg`
+    ));
   }
 }

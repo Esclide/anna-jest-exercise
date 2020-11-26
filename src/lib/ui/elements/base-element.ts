@@ -1,8 +1,11 @@
-import { Page } from 'puppeteer';
+import { Page } from "puppeteer";
 const defaultTimeout = 10000;
 
 export class BaseElement {
-  constructor(public readonly selector: string, protected readonly page: Page) {}
+  constructor(
+    public readonly selector: string,
+    protected readonly page: Page
+  ) {}
 
   /**
    * Wait for element appears
@@ -22,6 +25,9 @@ export class BaseElement {
       counter += 1;
       await new Promise((resolve) => setTimeout(resolve, msWaitTime));
     }
-    await this.page.waitForSelector(customSelector, { timeout: defaultTimeout, visible: true });
+    await this.page.waitForSelector(customSelector, {
+      timeout: defaultTimeout,
+      visible: true,
+    });
   }
 }

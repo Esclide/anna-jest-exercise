@@ -1,17 +1,22 @@
-import { Browser, BrowserContext, Page } from 'puppeteer';
-import { Service, Container } from 'typedi';
-const puppeteer = require('puppeteer');
+import { BrowserContext } from "puppeteer";
+import puppeteer = require("puppeteer");
 
-let browser: Browser;
+const paramPuppeteer = {
+  args: [
+    "--incognito",
+    "--ignore-certificate-errors",
+    "--no-sandbox",
+    "--disable-setuid-sandbox",
+    "--window-size=1920,1080",
+    "--disable-accelerated-2d-canvas",
+    "--disable-gpu",
+  ],
+  headless: false,
+};
 
-@Service()
 export class GlobalBrowser {
-
-  public newPage(): Promise<Page> {
-    return browser.newPage();
-  }
-
-  public getDefaultBrowserContext(): BrowserContext {
+  public async getDefaultBrowserContext(): Promise<BrowserContext> {
+    const browser = await puppeteer.launch(paramPuppeteer);
     return browser.defaultBrowserContext();
   }
 
@@ -20,19 +25,7 @@ export class GlobalBrowser {
    * @returns {Promise<BrowserContext>}
    */
   public async getNewIncognitoBrowserContext(): Promise<BrowserContext> {
-    const param_puppeteer = {
-      args: [
-        "--incognito",
-        "--ignore-certificate-errors",
-        "--no-sandbox",
-        "--disable-setuid-sandbox",
-        "--window-size=1920,1080",
-        "--disable-accelerated-2d-canvas",
-        "--disable-gpu"],
-      headless: false
-    };
-
-    const browser = await puppeteer.launch(param_puppeteer);
+    const browser = await puppeteer.launch(paramPuppeteer);
     return await browser.createIncognitoBrowserContext();
   }
 }

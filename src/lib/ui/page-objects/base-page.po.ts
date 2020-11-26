@@ -1,15 +1,14 @@
-import { BrowserContext, Page } from 'puppeteer'
-import { GlobalBrowser } from '../../browser'
+import { BrowserContext, Page } from "puppeteer";
+import { GlobalBrowser } from "../../browser";
 
 const defaultTimeout = 20000;
-const baseUrl = 'https://some-page.com/'
+const baseUrl = "https://some-page.com/";
 
 export class BasePagePo {
   public page!: Page;
   public context!: BrowserContext;
   private readonly path: string;
   private readonly browser!: GlobalBrowser;
-
 
   constructor(pathPrefix: string) {
     this.path = baseUrl + pathPrefix;
@@ -20,7 +19,7 @@ export class BasePagePo {
    * @returns {Promise<void>}
    */
   public async init(context?: BrowserContext): Promise<void> {
-    this.context = context || this.browser.getDefaultBrowserContext();
+    this.context = context || (await this.browser.getDefaultBrowserContext());
     this.page = await this.context.newPage();
   }
 
@@ -42,13 +41,20 @@ export class BasePagePo {
 
     if (parameters) {
       for (const key of Object.keys(parameters)) {
-        pathToNavigate = pathToNavigate.replace(`:${key}`, (parameters as any)[key]);
+        pathToNavigate = pathToNavigate.replace(
+          `:${key}`,
+          // tslint:disable-next-line: no-any
+          (parameters as any)[key]
+        );
       }
     }
 
     await Promise.all([
       this.page.waitForNavigation(),
-      this.page.goto(pathToNavigate, { waitUntil: 'networkidle0', timeout: defaultTimeout }),
+      this.page.goto(pathToNavigate, {
+        waitUntil: "networkidle0",
+        timeout: defaultTimeout,
+      }),
     ]);
   }
 
@@ -57,7 +63,10 @@ export class BasePagePo {
    * @returns {Promise<void>}
    */
   public async waitForNavigation(): Promise<void> {
-    await this.page.waitForNavigation({ waitUntil: 'networkidle0', timeout: defaultTimeout });
+    await this.page.waitForNavigation({
+      waitUntil: "networkidle0",
+      timeout: defaultTimeout,
+    });
   }
 
   /**
